@@ -7,3 +7,12 @@ __pycache__/
 creditcard.csv
 *.egg-info/
 .pytest_cache/
+
+# Intermediate plots (canonical paper files only)
+fraud/output/Figure_PR_curves.png
+fraud/output/Figure_2_confusion_PR.png
+fraud/output/Figure_SHAP_waterfall_FP.png
+fraud/output/Figure_SHAP_waterfall_FN.png
+fraud/output/Table_1_SHAP_feature_importance.csv
+fraud/output/Table_nadeau_bengio_holm.csv
+fraud/output/*_display.csv

@@ -5,7 +5,7 @@ from __future__ import annotations
 import pandas as pd
 
 from fraud import OUTPUT_DIR
-from fraud.plots import plot_results_table
+from fraud.plots import compose_figure2_from_saved, plot_results_table
 from fraud.tables import (
     build_holm_table,
     build_table1,
@@ -45,8 +45,6 @@ def main() -> None:
     )
     print_table2(shown2)
     shap_path = OUTPUT_DIR / "Table_3_SHAP_feature_importance.csv"
-    if not shap_path.exists():
-        shap_path = OUTPUT_DIR / "Table_1_SHAP_feature_importance.csv"
     if shap_path.exists():
         shown3 = write_table3(pd.read_csv(shap_path))
         plot_results_table(
@@ -67,6 +65,8 @@ def main() -> None:
         fontsize=8,
     )
     print_table4(shown4)
+
+    compose_figure2_from_saved()
 
     print(f"Wrote Table 1 to {OUTPUT_DIR / 'Table_1_performance.csv'}")
     print(f"Wrote Table 2 to {OUTPUT_DIR / 'Table_2_nadeau_bengio_holm.csv'}")

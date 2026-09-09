@@ -238,7 +238,6 @@ def display_holm(stats_df: pd.DataFrame) -> pd.DataFrame:
 
 def write_table2(stats_df: pd.DataFrame) -> pd.DataFrame:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    stats_df.to_csv(OUTPUT_DIR / "Table_nadeau_bengio_holm.csv", index=False)
     shown = display_holm(stats_df)
     shown.to_csv(OUTPUT_DIR / "Table_2_nadeau_bengio_holm.csv", index=False)
     headers = list(shown.columns)
@@ -282,10 +281,8 @@ def display_shap_importance(importance: pd.DataFrame) -> pd.DataFrame:
 
 def write_table3(importance: pd.DataFrame) -> pd.DataFrame:
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-    importance.to_csv(OUTPUT_DIR / "Table_1_SHAP_feature_importance.csv", index=False)
     importance.to_csv(OUTPUT_DIR / "Table_3_SHAP_feature_importance.csv", index=False)
     shown = display_shap_importance(importance)
-    shown.to_csv(OUTPUT_DIR / "Table_3_SHAP_feature_importance_display.csv", index=False)
     headers = list(shown.columns)
     lines = [
         "| " + " | ".join(headers) + " |",
@@ -350,7 +347,6 @@ def write_table4(fold_df: pd.DataFrame) -> pd.DataFrame:
     paired = build_paired_fold_table(fold_df)
     paired.to_csv(OUTPUT_DIR / "Table_4_paired_fold_scores.csv", index=False)
     shown = display_paired_folds(paired)
-    shown.to_csv(OUTPUT_DIR / "Table_4_paired_fold_scores_display.csv", index=False)
     headers = list(shown.columns)
     lines = [
         "| " + " | ".join(headers) + " |",

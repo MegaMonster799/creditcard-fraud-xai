@@ -105,7 +105,7 @@ If `significant_after_holm` is false, withdraw “p < 0.001 / highly significant
 
 The old manuscript treated a log-odds base value as a probability. The new figures are **interventional TreeExplainer, `model_output='probability'`**, background = 256 rows drawn from the **imbalanced** training matrix (not SMOTE). `methods_manifest.json` records SHAP version, perturbation mode, background, model, and that explanations are additive in P(fraud).
 
-Waterfalls: Figure 4 TP (`Figure_SHAP_waterfall_TP.png`). Figures 5 (FP) and 6 (FN) are labeled individually but saved together as `Figure_SHAP_waterfall_FP_FN.png`.
+Waterfalls: Figure 5 TP (`Figure_SHAP_waterfall_TP.png`). Figures 6 (FP) and 7 (FN) are labeled individually but saved together as `Figure_SHAP_waterfall_FP_FN.png`. Dependence: Figure 4 (`Figure_SHAP_dependence_V14.png`).
 
 ### 9. Replace non-peer-reviewed references
 
@@ -127,7 +127,7 @@ Remove Kaggle blogs, Medium, documentation-only URLs except as footnotes for sof
 1. Discuss SHAP in Methods + Results only; one sentence in the Introduction.
 2. Fix “intepretability” → interpretability; “Logisitic” → Logistic.
 3. Point reviewers to this repository and `python -m fraud.run_experiment`.
-4. Captions: Figure 1 EDA, Figure 2 SHAP summary, Figure 3 PR, Figure 4 TP waterfall, Figures 5–6 combined FP/FN waterfalls (`Figure_SHAP_waterfall_FP_FN.png`), Figure 7 calibration, Figure 8 confusion. Tables: Table 1 performance, Table 2 Holm tests, Table 3 global SHAP importance, Table 4 paired outer-fold scores.
+4. Captions: Figure 1 EDA, Figure 2 confusion matrices (a, b) and PR curves (c), Figure 3 SHAP summary, Figure 4 V14 dependence, Figure 5 TP waterfall, Figures 6–7 combined FP/FN waterfalls (`Figure_SHAP_waterfall_FP_FN.png`), Figure 8 calibration. Tables: Table 1 performance, Table 2 Holm tests, Table 3 global SHAP importance, Table 4 paired outer-fold scores.
 
 ## Formatting
 

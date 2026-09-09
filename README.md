@@ -64,16 +64,23 @@ All generated files are written to [`fraud/output/`](fraud/output/).
 
 | File | Contents |
 |---|---|
-| `Table_1_performance.*` | Nested-CV and holdout PR-AUC, F1, precision, recall, FPR, balanced accuracy |
-| `Table_2_nadeau_bengio_holm.*` | Corrected tests and Holm decisions |
-| `Table_3_SHAP_feature_importance.*` | Global mean \|SHAP\| ranks |
-| `Table_4_paired_fold_scores.*` | Five outer-fold paired scores and XGBoost − logistic differences |
-| `Figure_1_EDA.png` | Class counts, Amount boxplots, 48-hour Time KDEs |
-| `Figure_PR_curves.png` / `Figure_calibration.png` | Holdout PR curves and reliability diagram |
-| `Figure_SHAP_summary.png` | Global SHAP summary (probability space) |
-| `Figure_SHAP_waterfall_TP.png` | Figure 4, true positive |
-| `Figure_SHAP_waterfall_FP_FN.png` | Figures 5–6, false positive and false negative |
+| `Table_1_performance.csv` / `.md` / `.png` | Nested-CV and holdout PR-AUC, F1, precision, recall, FPR, balanced accuracy |
+| `Table_1_performance_numeric.csv` | Same Table 1 cells, unrounded |
+| `Table_2_nadeau_bengio_holm.csv` / `.md` / `.png` | Corrected tests and Holm decisions |
+| `Table_3_SHAP_feature_importance.csv` / `.md` / `.png` | Global mean \|SHAP\| ranks |
+| `Table_4_paired_fold_scores.csv` / `.md` / `.png` | Five outer-fold paired scores and XGBoost − logistic differences |
+| `Table_nested_cv_folds.csv` | Raw outer-fold metrics used to build Tables 1, 2, and 4 |
+| `Table_holdout_metrics.csv` | Locked-threshold holdout metrics and confusion counts |
+| `Table_holdout_fpr_operating_points.csv` | Holdout metrics at fixed FPR targets |
+| `Figure_1_EDA.png` | Figure 1: class counts, Amount boxplots, 48-hour Time KDEs |
+| `Figure_confusion_matrices.png` | Figure 2: holdout confusion matrices (a, b) and PR curves (c) |
+| `Figure_SHAP_summary.png` | Figure 3: global SHAP summary (probability space) |
+| `Figure_SHAP_dependence_V14.png` | Figure 4: V14 dependence with V7 interaction |
+| `Figure_SHAP_waterfall_TP.png` | Figure 5: true-positive waterfall |
+| `Figure_SHAP_waterfall_FP_FN.png` | Figures 6–7: false positive and false negative |
+| `Figure_calibration.png` | Figure 8: reliability diagram |
 | `methods_manifest.json` | Selected hyperparameters, locked threshold, library versions, timing |
+| `holdout_scores.npz` | Holdout labels and predicted probabilities (regenerate Figure 2 without refitting) |
 
 On the saved SMOTE run, only **PR-AUC** is significant after Holm (mean difference +0.1091, *p* = 0.0022). Holdout recall is 0.726 (XGBoost) vs 0.758 (logistic regression). Do not claim a significant F1 or FPR gain.
 

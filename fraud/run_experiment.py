@@ -41,9 +41,10 @@ from fraud.nested import run_nested_cv
 from fraud.plots import (
     combine_side_by_side,
     plot_calibration,
-    plot_confusion_matrices,
+    plot_confusion_and_pr,
     plot_pr_curves,
     plot_results_table,
+    plot_shap_dependence,
     plot_shap_summary,
     plot_waterfall,
 )
@@ -211,11 +212,14 @@ def run(quick: bool = False) -> None:
         figsize=(15.4, 3.1),
         fontsize=8,
     )
-    plot_confusion_matrices(
+    plot_confusion_and_pr(
         {
             "XGBoost": xgb_final["metrics"],
             "Logistic regression": lr_final["metrics"],
-        }
+        },
+        y_test,
+        {"XGBoost": xgb_final["proba"], "Logistic regression": lr_final["proba"]},
+        path_name="Figure_confusion_matrices.png",
     )
     fpr_table = pd.DataFrame(
         [{"model": "xgboost", **r} for r in xgb_final["fpr_points"]]
@@ -247,12 +251,13 @@ def run(quick: bool = False) -> None:
         fontsize=8,
     )
     plot_shap_summary(shap_values, X_exp)
+    plot_shap_dependence(shap_values, X_exp, feature="V14", interaction_index="V7")
     pred = xgb_final["pred"]
     proba = xgb_final["proba"]
     for kind, title, fname in (
-        ("tp", "Figure 4. SHAP waterfall — true positive (probability space)", "Figure_SHAP_waterfall_TP.png"),
-        ("fp", "Figure 5. SHAP waterfall — false positive (probability space)", "Figure_SHAP_waterfall_FP.png"),
-        ("fn", "Figure 6. SHAP waterfall — false negative (probability space)", "Figure_SHAP_waterfall_FN.png"),
+        ("tp", "Figure 5. SHAP waterfall — true positive (probability space)", "Figure_SHAP_waterfall_TP.png"),
+        ("fp", "Figure 6. SHAP waterfall — false positive (probability space)", "Figure_SHAP_waterfall_FP.png"),
+        ("fn", "Figure 7. SHAP waterfall — false negative (probability space)", "Figure_SHAP_waterfall_FN.png"),
     ):
         idx = pick_case(y_test, pred, proba, kind)
         if idx is None:
@@ -272,7 +277,7 @@ def run(quick: bool = False) -> None:
         "Figure_SHAP_waterfall_FN.png",
         "Figure_SHAP_waterfall_FP_FN.png",
     )
-    print(f"  combined Figure 5 and Figure 6 -> {combined.name}")
+    print(f"  combined Figure 6 and Figure 7 -> {combined.name}")
 
     manifest.update(
         {
