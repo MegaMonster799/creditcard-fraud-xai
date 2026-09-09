@@ -1,0 +1,9 @@
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+.mplconfig/
+creditcard.csv
+*.egg-info/
+.pytest_cache/

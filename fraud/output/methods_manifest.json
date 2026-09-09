@@ -1,0 +1,74 @@
+{
+  "shap_version": "0.52.0",
+  "explainer": "shap.TreeExplainer",
+  "feature_perturbation": "interventional",
+  "model_output": "probability",
+  "background": {
+    "n": 256,
+    "sampling": "uniform without replacement from the original (imbalanced) training matrix",
+    "mean_label_in_full_train": "training fraud rate=0.001665"
+  },
+  "model": "XGBClassifier (hist, nested-CV winner refit on full train)",
+  "note": "Interventional TreeExplainer with model_output='probability' attributes changes in P(fraud), not log-odds. The background is the real training prevalence, not the SMOTE-balanced mix, so E[f(X)] tracks the operational base rate.",
+  "seed": 42,
+  "imbalance": "smote",
+  "smote": {
+    "k_neighbors": 5,
+    "sampling_strategy": 1.0,
+    "random_state": 42
+  },
+  "xgb_search": {
+    "n_estimators": "searched in [80, 280); not early-stopped; selected by inner PR-AUC",
+    "max_depth": "searched in {3,...,7}",
+    "learning_rate": "log-uniform [0.03, 0.2]",
+    "subsample": "uniform [0.6, 1.0]",
+    "colsample_bytree": "uniform [0.6, 1.0]",
+    "min_child_weight": "searched in {1,...,7}",
+    "gamma": "uniform [0, 1.5]",
+    "reg_alpha": "log-uniform [1e-4, 1]",
+    "reg_lambda": "log-uniform [0.1, 5]",
+    "tree_method": "hist",
+    "objective": "binary:logistic",
+    "early_stopping": false,
+    "selection": "RandomizedSearchCV, identical n_iter for both families"
+  },
+  "xgb_selected_params": {
+    "model__colsample_bytree": 0.749816047538945,
+    "model__gamma": 1.4260714596148742,
+    "model__learning_rate": 0.12028665880905137,
+    "model__max_depth": 7,
+    "model__min_child_weight": 5,
+    "model__n_estimators": 182,
+    "model__reg_alpha": 0.006071989493441302,
+    "model__reg_lambda": 0.14786125334132752,
+    "model__subsample": 0.7836995567863468
+  },
+  "threshold_objective": "maximize F1 on inner out-of-fold scores",
+  "locked_threshold": 0.9773345589637756,
+  "model_used_for_shap": "final holdout XGBoost refit on the full training split",
+  "hardware_and_timing": {
+    "python": "3.12.7",
+    "platform": "macOS-15.7.5-arm64-arm-64bit",
+    "processor": "arm",
+    "sklearn": "1.8.0",
+    "xgboost": "3.2.0",
+    "shap": "0.52.0",
+    "numpy": "2.4.6",
+    "pandas": "3.0.3",
+    "xgb_train_seconds": 5.013403958000708,
+    "logreg_train_seconds": 1.2281250829983037,
+    "xgb_us_per_transaction": 1.7067332999431528,
+    "logreg_us_per_transaction": 0.25660625033196993
+  },
+  "data_audit": {
+    "n_rows": 284807,
+    "n_features": 30,
+    "n_fraud": 473,
+    "n_legit": 283253,
+    "n_missing": 0,
+    "n_duplicate_rows": 1081,
+    "n_dropped_duplicates": 1081,
+    "amount_iqr_outlier_rate": 0.11167464384652799,
+    "fraud_rate": 0.001667101358352777
+  }
+}

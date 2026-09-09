@@ -1,0 +1,5 @@
+Model,Evaluation,PR-AUC,F1,Precision,Recall,FPR,Balanced Accuracy
+Logistic regression,Nested 5-fold CV,0.7413 ± 0.0283,0.8072 ± 0.0427,0.8591 ± 0.0406,0.7671 ± 0.0860,0.000216 ± 0.000092,0.8834 ± 0.0430
+Logistic regression,Holdout,0.6929,0.8136,0.8780,0.7579,0.000177,0.8789
+XGBoost,Nested 5-fold CV,0.8504 ± 0.0332,0.8564 ± 0.0306,0.9225 ± 0.0300,0.8015 ± 0.0578,0.000115 ± 0.000050,0.9007 ± 0.0289
+XGBoost,Holdout,0.8107,0.8364,0.9857,0.7263,0.000018,0.8631
